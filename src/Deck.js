@@ -8,6 +8,7 @@ function Deck({ deck_id }) {
     cardsRemaining: 52,
     isLoading: true
   });
+  const [clicked, setClicked] = useState(false)
 
   useEffect(function fetchCardOnChange() {
     async function fetchCard() {
@@ -22,7 +23,7 @@ function Deck({ deck_id }) {
       console.log("In useffect:", cards);
     }
     fetchCard();
-  }, []);
+  }, [clicked]);
 
   // function renderCards() {
   //   const currCards = cards.cardImgs
@@ -30,8 +31,13 @@ function Deck({ deck_id }) {
   //   // return currCards.map((c, idx )=> <img key={idx} src={`${c}`} alt='card'/>)
   // }
 
+  function handleClick() {
+    setClicked(c => !clicked)
+  }
+
   return (
     <div>
+      <button onClick={handleClick}>CLICK ME!</button>
       {!cards.isLoading && cards.cardImgs.map((c, idx) => (<img key={idx} src={`${c}`} />))}
     </div>
   );
