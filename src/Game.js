@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Deck from "./Deck";
 
 const BASE_URL = "https://deckofcardsapi.com/api/deck/";
 
@@ -27,8 +28,11 @@ function Game() {
   console.log(deck);
 
   return (
-    <h1>hello</h1>
-  )
+    <div>
+      {!deck.isLoading && <Deck deck_id={deck.deck_id} />}
+    </div>
+  );
 }
 
 export default Game;
+export { BASE_URL };
